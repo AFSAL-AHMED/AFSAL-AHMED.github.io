@@ -1,26 +1,24 @@
 import { useState } from 'react';
-import { Send, CheckCircle, Terminal, Mail, User, FileText, AlertCircle } from 'lucide-react';
+import { Mail, Send, CheckCircle2, ShieldCheck, FileText, User, Building, MessageSquare } from 'lucide-react';
 
-const SUBMISSION_TYPES = [
-  'Technical Manuscript (Research Article)',
-  'Case Study Submission',
-  'Open Source Project Feature',
-  'Guest Editorial / Opinion',
-  'Interview Request',
-  'Partnership Inquiry',
-  'Press & Media Contact',
-  'Other',
+const MANUSCRIPT_CATEGORIES = [
+  'Full Research Article (Empirical Study)',
+  'Technical Architecture Case Study / Post-Mortem',
+  'Systems Infrastructure Benchmark',
+  'Open Source Tool Monograph',
+  'Letters to the Editor / Editorial Opinion',
 ];
 
 export default function ContactPage() {
   const [form, setForm] = useState({
     name: '',
     email: '',
-    affiliation: '',
-    type: '',
-    scope: '',
+    institution: '',
+    category: MANUSCRIPT_CATEGORIES[0],
+    title: '',
+    abstract: '',
   });
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [status, setStatus] = useState('idle');
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -28,278 +26,281 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.scope) return;
+    if (!form.name || !form.email || !form.title) return;
     setStatus('sending');
-    // Simulate submission (replace with actual endpoint)
-    setTimeout(() => setStatus('sent'), 1800);
+    setTimeout(() => {
+      setStatus('sent');
+    }, 1200);
   };
 
-  const isValid = form.name && form.email && form.scope;
-
   return (
-    <div className="min-h-screen grid-bg pt-28 pb-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-
-        {/* ── HEADER ── */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="badge badge-cyan">COMMUNICATIONS GATEWAY</span>
-            <span className="badge badge-slate">SUBMISSION PROTOCOL</span>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      
+      {/* ── HEADER ── */}
+      <div className="border-b-2 border-black pb-6 mb-10">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#EFECE6] px-2 py-0.5 border border-[#DCD6CD]">
+              Editorial Submissions & Inquiries
+            </span>
+            <span className="text-xs font-mono text-[#525252]">
+              CSIR-NIScPR COMPLIANT SUBMISSION PIPELINE
+            </span>
           </div>
-          <h1 className="display-lg text-white mb-4">
-            Initiate a{' '}
-            <span style={{ color: '#00F0FF' }}>Transmission</span>
-          </h1>
-          <p className="text-muted max-w-2xl">
-            Structured intake portal for research manuscripts, editorial inquiries, and
-            collaboration requests. All submissions are reviewed by the editorial board
-            within 72 business hours.
-          </p>
+          <span className="text-xs font-mono text-[#525252]">
+            Turnaround: ~72 Business Hours
+          </span>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8">
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-black tracking-tight">
+          Manuscript Intake & Editorial Comms Node
+        </h1>
+        <p className="text-sm sm:text-base text-[#525252] mt-2 max-w-3xl font-sans">
+          The centralized intake gateway for technical monographs, empirical research studies, and peer-review correspondence. Direct communications are actively monitored by the 5-member student editorial board.
+        </p>
+      </div>
 
-          {/* ── FORM PANEL (3/5 width) ── */}
-          <div className="lg:col-span-3">
-            {status === 'sent' ? (
-              <div className="card-base p-10 text-center flex flex-col items-center gap-5"
-                style={{ borderColor: 'rgba(0,240,255,0.2)', background: 'rgba(0,240,255,0.02)' }}>
-                <div className="w-16 h-16 rounded-full bg-cyan-neon/10 border border-cyan-500/30 flex items-center justify-center"
-                  style={{ boxShadow: '0 0 30px rgba(0,240,255,0.2)' }}>
-                  <CheckCircle size={32} style={{ color: '#00F0FF' }} />
-                </div>
-                <h3 className="font-bold text-xl text-white">Transmission Received</h3>
-                <p className="text-muted max-w-sm text-sm">
-                  Your submission has been logged in our editorial queue. Expect a response to{' '}
-                  <span style={{ color: '#00F0FF' }}>{form.email}</span>{' '}
-                  within 72 business hours.
-                </p>
-                <div className="font-mono text-xs text-muted border border-white/5 rounded px-4 py-2"
-                  style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                  TICKET_REF: TBP-{Date.now().toString(36).toUpperCase().slice(-6)}
-                </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        {/* ── SUBMISSION FORM (7 Cols) ── */}
+        <div className="lg:col-span-7 bg-white border border-[#DCD6CD] p-6 sm:p-8 shadow-sm">
+          <div className="flex items-center justify-between border-b border-[#DCD6CD] pb-3 mb-6">
+            <h2 className="font-serif text-xl font-bold text-black">
+              Manuscript Intake Form
+            </h2>
+            <span className="text-xs font-mono text-[#737373]">
+              QUEUE: EDITORIAL-INTAKE
+            </span>
+          </div>
+
+          {status === 'sent' ? (
+            <div className="bg-[#FAF9F6] border border-[#DCD6CD] p-8 text-center space-y-4">
+              <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle2 size={24} />
+              </div>
+              <h3 className="font-serif text-xl font-bold text-black">
+                Manuscript Logged Successfully
+              </h3>
+              <p className="text-xs sm:text-sm text-[#525252] max-w-md mx-auto font-sans leading-relaxed">
+                Your submission has been queued for preliminary screening by the Publisher & EIC (Afsal Ahmed S). An acknowledgment has been assigned to <strong className="text-black">{form.email}</strong>.
+              </p>
+              <div className="text-xs font-mono text-[#737373] bg-[#F4F1EA] p-3 border border-[#DCD6CD] inline-block">
+                LOG ID: TBP-INTAKE-{Math.random().toString(36).substring(2, 8).toUpperCase()}
+              </div>
+              <div className="pt-2">
                 <button
-                  onClick={() => { setStatus('idle'); setForm({ name: '', email: '', affiliation: '', type: '', scope: '' }); }}
-                  className="btn-secondary text-sm"
+                  onClick={() => {
+                    setStatus('idle');
+                    setForm({ name: '', email: '', institution: '', category: MANUSCRIPT_CATEGORIES[0], title: '', abstract: '' });
+                  }}
+                  className="px-4 py-2 bg-black text-white text-xs font-mono uppercase tracking-wider font-semibold"
                 >
-                  Submit Another
+                  Submit Another Ingestion
                 </button>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-
-                {/* Researcher Identity */}
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4 text-xs font-sans">
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block label-mono text-muted mb-2" htmlFor="name">
-                    <User size={11} className="inline mr-1.5 mb-0.5" />
-                    RESEARCHER IDENTITY *
+                  <label className="block font-mono text-black font-semibold uppercase mb-1">
+                    Corresponding Author Name *
                   </label>
                   <input
-                    id="name"
-                    name="name"
                     type="text"
+                    name="name"
+                    required
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="Full name / Preferred handle"
-                    className="input-field"
-                    required
+                    placeholder="e.g., Afsal Ahmed S"
+                    className="w-full px-3 py-2 bg-[#FAF9F6] border border-[#DCD6CD] focus:border-black focus:outline-none font-sans text-sm"
                   />
                 </div>
-
-                {/* Return Institutional Node */}
                 <div>
-                  <label className="block label-mono text-muted mb-2" htmlFor="email">
-                    <Mail size={11} className="inline mr-1.5 mb-0.5" />
-                    RETURN INSTITUTIONAL NODE (EMAIL) *
+                  <label className="block font-mono text-black font-semibold uppercase mb-1">
+                    Institutional Email Address *
                   </label>
                   <input
-                    id="email"
-                    name="email"
                     type="email"
+                    name="email"
+                    required
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="you@institution.edu"
-                    className="input-field"
-                    required
+                    placeholder="e.g., author@stjosephs.tech.sc.in"
+                    className="w-full px-3 py-2 bg-[#FAF9F6] border border-[#DCD6CD] focus:border-black focus:outline-none font-sans text-sm"
                   />
                 </div>
+              </div>
 
-                {/* Affiliation */}
-                <div>
-                  <label className="block label-mono text-muted mb-2" htmlFor="affiliation">
-                    <Terminal size={11} className="inline mr-1.5 mb-0.5" />
-                    INSTITUTIONAL AFFILIATION
-                  </label>
-                  <input
-                    id="affiliation"
-                    name="affiliation"
-                    type="text"
-                    value={form.affiliation}
-                    onChange={handleChange}
-                    placeholder="University / Company / Independent"
-                    className="input-field"
-                  />
-                </div>
+              <div>
+                <label className="block font-mono text-black font-semibold uppercase mb-1">
+                  Department / University Affiliation
+                </label>
+                <input
+                  type="text"
+                  name="institution"
+                  value={form.institution}
+                  onChange={handleChange}
+                  placeholder="e.g., Dept of CSE, St. Joseph’s Institute of Technology"
+                  className="w-full px-3 py-2 bg-[#FAF9F6] border border-[#DCD6CD] focus:border-black focus:outline-none font-sans text-sm"
+                />
+              </div>
 
-                {/* Submission Type */}
-                <div>
-                  <label className="block label-mono text-muted mb-2" htmlFor="type">
-                    <FileText size={11} className="inline mr-1.5 mb-0.5" />
-                    TRANSMISSION TYPE
-                  </label>
-                  <select
-                    id="type"
-                    name="type"
-                    value={form.type}
-                    onChange={handleChange}
-                    className="input-field"
-                    style={{ appearance: 'none' }}
-                  >
-                    <option value="">Select submission category...</option>
-                    {SUBMISSION_TYPES.map((t) => (
-                      <option key={t} value={t}>{t}</option>
-                    ))}
-                  </select>
-                </div>
+              <div>
+                <label className="block font-mono text-black font-semibold uppercase mb-1">
+                  Manuscript Category
+                </label>
+                <select
+                  name="category"
+                  value={form.category}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 bg-[#FAF9F6] border border-[#DCD6CD] focus:border-black focus:outline-none font-sans text-sm"
+                >
+                  {MANUSCRIPT_CATEGORIES.map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-                {/* Manuscript Scope */}
-                <div>
-                  <label className="block label-mono text-muted mb-2" htmlFor="scope">
-                    <FileText size={11} className="inline mr-1.5 mb-0.5" />
-                    TECHNICAL MANUSCRIPT SCOPE *
-                  </label>
-                  <textarea
-                    id="scope"
-                    name="scope"
-                    value={form.scope}
-                    onChange={handleChange}
-                    placeholder="Describe your manuscript, research topic, question, or collaboration request. Be specific about scope, methodology, and what you're looking to achieve..."
-                    className="input-field"
-                    rows={6}
-                    required
-                  />
-                </div>
+              <div>
+                <label className="block font-mono text-black font-semibold uppercase mb-1">
+                  Working Title of Manuscript *
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  required
+                  value={form.title}
+                  onChange={handleChange}
+                  placeholder="e.g., Latency Optimization in Quantized Vision Transformers"
+                  className="w-full px-3 py-2 bg-[#FAF9F6] border border-[#DCD6CD] focus:border-black focus:outline-none font-sans text-sm"
+                />
+              </div>
 
-                {/* Editorial Guidelines note */}
-                <div className="flex items-start gap-2.5 p-3.5 rounded-lg bg-white/3 border border-white/5">
-                  <AlertCircle size={14} className="text-muted flex-shrink-0 mt-0.5" />
-                  <p className="text-xs text-muted leading-relaxed">
-                    Submissions must fall within our editorial scope: AI engineering, computer vision,
-                    or startup strategy. We do not accept promotional or marketing-only content.
-                    Read our{' '}
-                    <span className="text-cyan cursor-pointer hover:underline" style={{ color: '#00F0FF' }}>
-                      Editorial Standards
-                    </span>{' '}
-                    before submitting.
-                  </p>
-                </div>
+              <div>
+                <label className="block font-mono text-black font-semibold uppercase mb-1">
+                  Executive Abstract & GitHub / Drive Link
+                </label>
+                <textarea
+                  name="abstract"
+                  rows={4}
+                  value={form.abstract}
+                  onChange={handleChange}
+                  placeholder="Provide an empirical abstract (150–250 words) and link to code repositories or preprints..."
+                  className="w-full px-3 py-2 bg-[#FAF9F6] border border-[#DCD6CD] focus:border-black focus:outline-none font-sans text-sm"
+                />
+              </div>
 
-                {/* Submit Button */}
+              <div className="pt-2">
                 <button
                   type="submit"
-                  id="submit-transmission-btn"
-                  disabled={!isValid || status === 'sending'}
-                  className="btn-primary w-full justify-center py-4 text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={status === 'sending'}
+                  className="w-full py-3 bg-black text-white text-xs font-mono uppercase tracking-wider font-semibold hover:bg-[#1A1A1A] transition-all flex items-center justify-center gap-2"
                 >
                   {status === 'sending' ? (
-                    <>
-                      <span className="w-4 h-4 border-2 border-obsidian/30 border-t-obsidian rounded-full animate-spin" />
-                      Transmitting...
-                    </>
+                    <span>Registering with Editorial Queue...</span>
                   ) : (
                     <>
-                      <Send size={16} strokeWidth={2.5} />
-                      Send Transmission
+                      <Send size={14} />
+                      <span>Transmit Manuscript to Editorial Board</span>
                     </>
                   )}
                 </button>
-              </form>
-            )}
-          </div>
+              </div>
 
-          {/* ── INFO SIDEBAR (2/5 width) ── */}
-          <div className="lg:col-span-2 space-y-5">
-
-            {/* Direct Contact */}
-            <div className="card-base p-5">
-              <div className="label-mono text-cyan mb-4" style={{ color: 'var(--cyan-neon)' }}>
-                DIRECT CONTACT NODES
-              </div>
-              <div className="space-y-4">
-                {[
-                  {
-                    role: 'Editor-in-Chief',
-                    name: 'Afsal Ahmed S',
-                    email: '24cs@stjosephs.tech.sc.in',
-                    tag: 'PRIMARY',
-                  },
-                  {
-                    role: 'Editorial Inquiries',
-                    name: 'The Builder Protocol',
-                    email: 'editorial@thebuilderprotocol.me',
-                    tag: 'EDITORIAL',
-                  },
-                ].map((contact) => (
-                  <div key={contact.tag} className="p-3.5 rounded-lg bg-white/3 border border-white/5">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xs font-semibold text-white">{contact.name}</span>
-                      <span className="badge badge-slate">{contact.tag}</span>
-                    </div>
-                    <div className="text-xs text-muted mb-1.5">{contact.role}</div>
-                    <a href={`mailto:${contact.email}`} className="text-xs font-mono hover:underline"
-                      style={{ color: '#00F0FF', fontFamily: "'JetBrains Mono', monospace" }}>
-                      {contact.email}
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Review SLA */}
-            <div className="card-base p-5">
-              <div className="label-mono text-cyan mb-4" style={{ color: 'var(--cyan-neon)' }}>
-                REVIEW PIPELINE SLA
-              </div>
-              <div className="space-y-3">
-                {[
-                  ['Initial Acknowledgement', '< 24 hours'],
-                  ['Editorial Review', '72 business hours'],
-                  ['Revision Feedback', '5-7 business days'],
-                  ['Publication Decision', '2-3 weeks'],
-                ].map(([stage, time]) => (
-                  <div key={stage} className="flex justify-between items-center text-xs border-b border-white/5 pb-2">
-                    <span className="text-muted">{stage}</span>
-                    <span className="font-mono text-white/80" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                      {time}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* What We're Looking For */}
-            <div className="card-base p-5">
-              <div className="label-mono text-amethyst mb-4" style={{ color: 'var(--amethyst)' }}>
-                EDITORIAL PRIORITY QUEUE
-              </div>
-              <ul className="space-y-2.5">
-                {[
-                  'AI agent architecture deep-dives',
-                  'Startup post-mortems with data',
-                  'Open source tool engineering breakdowns',
-                  'Computer vision pipeline case studies',
-                  'Zero-budget growth strategy playbooks',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs text-muted">
-                    <span className="text-cyan mt-0.5 flex-shrink-0" style={{ color: 'var(--cyan-neon)' }}>›</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+            </form>
+          )}
         </div>
+
+        {/* ── EDITORIAL DIRECTORY & AUDIT INFORMATION (5 Cols) ── */}
+        <div className="lg:col-span-5 space-y-6">
+          
+          {/* Central Office Card */}
+          <div className="border border-[#DCD6CD] bg-[#F4F1EA] p-6">
+            <h3 className="font-serif text-lg font-bold text-black border-b border-[#DCD6CD] pb-2 mb-3">
+              Official Central Contacts
+            </h3>
+            
+            <div className="space-y-4 text-xs font-mono">
+              <div className="bg-white border border-[#DCD6CD] p-3">
+                <span className="text-[#737373] text-[10px] uppercase block">
+                  Central Editorial Inquiries
+                </span>
+                <a
+                  href="mailto:editorial@thebuilderprotocol.me"
+                  className="text-black font-bold text-sm underline block mt-0.5"
+                >
+                  editorial@thebuilderprotocol.me
+                </a>
+                <span className="text-[11px] text-[#525252] block mt-1">
+                  Active correspondence node for authors & readers.
+                </span>
+              </div>
+
+              <div className="bg-white border border-[#DCD6CD] p-3">
+                <span className="text-[#737373] text-[10px] uppercase block">
+                  Publisher & Editor-in-Chief
+                </span>
+                <span className="text-black font-bold text-sm block mt-0.5">
+                  Afsal Ahmed S
+                </span>
+                <a
+                  href="mailto:24cs@stjosephs.tech.sc.in"
+                  className="text-black underline block mt-0.5"
+                >
+                  24cs@stjosephs.tech.sc.in
+                </a>
+                <span className="text-[11px] text-[#525252] block mt-1">
+                  Dept of CSE, St. Joseph’s Institute of Technology.
+                </span>
+              </div>
+
+              <div className="bg-white border border-[#DCD6CD] p-3">
+                <span className="text-[#737373] text-[10px] uppercase block">
+                  Registered Institutional Node
+                </span>
+                <span className="text-black font-semibold block mt-0.5">
+                  St. Joseph’s Institute of Technology
+                </span>
+                <span className="text-[#525252] block">
+                  Old Mahabalipuram Road, Chennai, Tamil Nadu — 600119, India.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Editorial SLA Box */}
+          <div className="border border-[#DCD6CD] bg-white p-5 text-xs font-mono">
+            <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-black border-b border-[#DCD6CD] pb-2 mb-3">
+              Editorial Pipeline Commitments
+            </h4>
+            <div className="space-y-2 text-[#525252]">
+              <div className="flex justify-between border-b border-[#DCD6CD] pb-1">
+                <span>Initial Desk Check:</span>
+                <strong className="text-black">Within 48 Hours</strong>
+              </div>
+              <div className="flex justify-between border-b border-[#DCD6CD] pb-1">
+                <span>Peer Review Period:</span>
+                <strong className="text-black">10–14 Days</strong>
+              </div>
+              <div className="flex justify-between border-b border-[#DCD6CD] pb-1">
+                <span>Author Revisions:</span>
+                <strong className="text-black">7 Days</strong>
+              </div>
+              <div className="flex justify-between">
+                <span>Catalog Publication:</span>
+                <strong className="text-black">Monthly Issue Batch</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
+
     </div>
   );
 }

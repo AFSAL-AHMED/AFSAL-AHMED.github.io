@@ -1,214 +1,247 @@
-import { ExternalLink, ArrowUpRight, ChevronRight, Lock, Globe } from 'lucide-react';
+import { ExternalLink, BookOpen, Download, FileText, ArrowUpRight, CheckCircle2, ChevronRight, Lock } from 'lucide-react';
 
-const ISSUE_02 = {
-  pubId: 'TBP-2026-02',
-  vol: 'Vol. 1',
-  issue: 'Issue 02',
-  date: 'August 2026',
-  theme: 'Built. Broken. Learned.',
-  subtitle: 'Forensic Autopsy of Clubhouse\'s $4B Collapse',
-  category: 'Case Study',
-  format: 'Open Access',
-  accent: 'cyan',
-  coverColor: 'from-cyan-950/40 to-obsidian-300',
-  sections: [
-    {
-      tag: 'COVER STORY',
-      title: 'Clubhouse\'s $4B Collapse',
-      desc: 'A forensic post-mortem dissecting the viral rise and catastrophic fall of the audio-social giant — from peak valuation to near-irrelevance in 18 months.',
-      link: '#',
-    },
-    {
-      tag: 'OPEN SOURCE CORNER',
-      title: 'Lightpanda Zig Browser',
-      desc: 'Exploring the blazing-fast, Zig-native browser engine redefining headless automation benchmarks for AI scraping pipelines.',
-      link: '#',
-    },
-    {
-      tag: 'AGENT PICK',
-      title: 'Manus AI — Dissected',
-      desc: 'A technical breakdown of Manus, the autonomous multi-agent system, including its architecture, capabilities, and real-world deployment edge cases.',
-      link: '#',
-    },
-    {
-      tag: 'GROWTH STRATEGY',
-      title: 'Generative Engine Optimization (GEO)',
-      desc: 'The new SEO. How builders must rethink content distribution for LLM-era search engines — AIO, perplexity ranking, and structured knowledge injection.',
-      link: '#',
-    },
-  ],
-};
-
-const ISSUE_01 = {
-  pubId: 'TBP-2026-01',
-  vol: 'Vol. 1',
-  issue: 'Issue 01',
-  date: 'April 2026',
-  theme: 'The Founder File Preface',
-  subtitle: 'Inaugural Edition — The Zero-to-One Builder Thesis',
-  category: 'Developer Tooling',
-  format: 'Open Access',
-  accent: 'amethyst',
-  coverColor: 'from-purple-950/40 to-obsidian-300',
-  sections: [
-    {
-      tag: 'EDITORIAL',
-      title: 'The Founder File Preface',
-      desc: 'The inaugural manifesto defining the Builder Protocol thesis: why the next billion-dollar companies will be built by technical founders who move first.',
-      link: '#',
-    },
-    {
-      tag: 'OPEN SOURCE CORNER',
-      title: 'React Ink CLI',
-      desc: 'Building terminal UIs with React. A hands-on guide to React Ink for building rich, interactive CLI developer tools in the Node.js ecosystem.',
-      link: '#',
-    },
-    {
-      tag: 'WEEKEND SPEC',
-      title: 'Academic OS Wedge',
-      desc: 'A systems design spec for building an open-source academic operations platform targeting Indian universities — the architecture, data model, and GTM.',
-      link: '#',
-    },
-    {
-      tag: 'STRATEGY',
-      title: 'Zero-to-One Playbook',
-      desc: 'A distilled, technical framework for validating, building, and distributing a startup in the zero-budget constraint environment.',
-      link: '#',
-    },
-  ],
-};
-
-function IssueCard({ issue, featured = false }) {
-  const isCyan = issue.accent === 'cyan';
-
-  return (
-    <div className={`card-base overflow-hidden ${featured ? 'border-2' : 'border'}`}
-      style={featured ? {
-        borderColor: isCyan ? 'rgba(0,240,255,0.2)' : 'rgba(157,78,221,0.2)',
-        boxShadow: isCyan
-          ? '0 0 40px rgba(0,240,255,0.06), 0 8px 40px rgba(0,0,0,0.5)'
-          : '0 0 40px rgba(157,78,221,0.06), 0 8px 40px rgba(0,0,0,0.5)',
-      } : {}}>
-
-      {/* Issue Header */}
-      <div className={`relative px-6 pt-6 pb-8 bg-gradient-to-br ${issue.coverColor}`}>
-        {featured && (
-          <div className="absolute top-4 right-4">
-            <span className="badge badge-cyan">LATEST ISSUE</span>
-          </div>
-        )}
-
-        <div className="flex items-center gap-2 mb-3">
-          <span className={`badge ${isCyan ? 'badge-cyan' : 'badge-amethyst'}`}>{issue.pubId}</span>
-          <span className="badge badge-slate">{issue.category}</span>
-          <span className="badge badge-green">
-            <Globe size={8} className="mr-1" />
-            {issue.format}
-          </span>
-        </div>
-
-        <div className="font-mono text-xs text-muted mb-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-          {issue.vol} — {issue.issue} // {issue.date}
-        </div>
-
-        <h2 className={`display-md mb-1 ${isCyan ? 'text-cyan' : 'text-amethyst'}`}
-          style={isCyan ? { color: '#00F0FF' } : { color: '#9D4EDD' }}>
-          {issue.theme}
-        </h2>
-        <p className="text-sm text-white/60">{issue.subtitle}</p>
-
-        {/* Decorative Grid Accent */}
-        <div className="absolute bottom-0 right-0 w-32 h-32 opacity-10"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)',
-            backgroundSize: '16px 16px',
-          }} />
-      </div>
-
-      {/* Sections */}
-      <div className="p-6 space-y-3">
-        <div className="label-mono text-muted mb-4">EDITORIAL SEGMENTS</div>
-        {issue.sections.map((section) => (
-          <a
-            key={section.tag}
-            href={section.link}
-            className="flex items-start gap-3 p-3.5 rounded-lg border border-white/5 hover:border-white/10 hover:bg-white/3 transition-all group cursor-pointer"
-          >
-            <ChevronRight size={14} className={`mt-0.5 flex-shrink-0 transition-transform group-hover:translate-x-0.5 ${isCyan ? 'text-cyan' : 'text-amethyst'}`}
-              style={isCyan ? { color: 'var(--cyan-neon)' } : { color: 'var(--amethyst)' }} />
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-0.5">
-                <span className={`tag-mono ${isCyan ? 'text-cyan' : 'text-amethyst'}`}
-                  style={isCyan ? { color: 'var(--cyan-neon)' } : { color: 'var(--amethyst)' }}>
-                  {section.tag}
-                </span>
-              </div>
-              <div className="font-semibold text-sm text-white/90 mb-1">{section.title}</div>
-              <div className="text-xs text-muted leading-relaxed">{section.desc}</div>
-            </div>
-            <ArrowUpRight size={13} className="flex-shrink-0 text-muted group-hover:text-white transition-colors mt-0.5" />
-          </a>
-        ))}
-      </div>
-
-      {/* Footer */}
-      <div className="px-6 pb-6 flex items-center gap-3">
-        <button className={`btn-primary flex-1 justify-center text-sm py-3 ${!isCyan ? 'bg-amethyst text-white' : ''}`}
-          style={!isCyan ? { background: 'var(--amethyst)', color: 'white', boxShadow: '0 0 20px rgba(157,78,221,0.3)' } : {}}>
-          Read Full Issue
-          <ExternalLink size={14} />
-        </button>
-        <button className="btn-secondary py-3 px-4 text-sm">
-          <Lock size={13} />
-          Download PDF
-        </button>
-      </div>
-    </div>
-  );
-}
+const SERIAL_ISSUES = [
+  {
+    pubId: 'PUB ID: TBP•2026•02',
+    catalogCode: 'TBP-VOL1-ISSUE02',
+    volume: 'Volume 1',
+    issue: 'Issue 02',
+    date: 'August 2026',
+    title: 'Forensic Teardown: The Structural Disintegration of Clubhouse Architecture',
+    subtitle: 'A Post-Mortem on Low-Latency Audio Infrastructure, Scalability Roadblocks, and Rapid Social Growth Evaporation.',
+    category: 'EMPIRICAL CASE STUDY & SYSTEMS INFRASTRUCTURE',
+    openAccess: true,
+    featured: true,
+    doi: '10.5281/zenodo.builderprotocol.2026.02',
+    leadAuthor: 'Editorial Systems Board • The Builder Protocol',
+    abstract: 'This empirical study analyzes the technical architecture and ultimate infrastructure collapse of Clubhouse. We investigate the Agora.io audio streaming pipeline, real-time message fan-out bottlenecks, mobile background daemon limits, and how architectural design choices led to irreversible retention decay.',
+    articles: [
+      {
+        type: 'LEAD INVESTIGATION',
+        title: 'Clubhouse\'s $4B Collapse: An Engineering Autopsy',
+        author: 'Afsal Ahmed S & Review Board',
+        pages: 'pp. 01–14',
+      },
+      {
+        type: 'SYSTEMS BENCHMARK',
+        title: 'Lightpanda Zig Browser: Headless Automation at Scale',
+        author: 'Systems Architecture Group',
+        pages: 'pp. 15–24',
+      },
+      {
+        type: 'AGENT INFRASTRUCTURE',
+        title: 'Manus AI: Architecture Dissection & Real-World Latency Limits',
+        author: 'AI Engineering Lab',
+        pages: 'pp. 25–36',
+      },
+      {
+        type: 'DISTRIBUTION ALGORITHM',
+        title: 'Generative Engine Optimization (GEO): The Next Generation of Developer SEO',
+        author: 'Ecosystem Distribution Node',
+        pages: 'pp. 37–48',
+      },
+    ],
+  },
+  {
+    pubId: 'PUB ID: TBP•2026•01',
+    catalogCode: 'TBP-VOL1-ISSUE01',
+    volume: 'Volume 1',
+    issue: 'Issue 01',
+    date: 'April 2026',
+    title: 'The First Issue Preface: Zero-to-One Technical Optimization Playbooks',
+    subtitle: 'The Inaugural Publication Manifesto, Terminal Developer Interfaces, and Zero-Budget Execution Frameworks.',
+    category: 'INAUGURAL EDITORIAL & DEVELOPER TOOLING',
+    openAccess: true,
+    featured: false,
+    doi: '10.5281/zenodo.builderprotocol.2026.01',
+    leadAuthor: 'Afsal Ahmed S (Publisher & Editor-in-Chief)',
+    abstract: 'The inaugural preface of The Builder Protocol introduces the empirical doctrine for independent builders. Contains actionable engineering frameworks for shipping high-throughput CLI tooling using React Ink, building local-first data layers, and validating software architectures on zero initial capitalization.',
+    articles: [
+      {
+        type: 'EDITORIAL MANIFESTO',
+        title: 'The Founder File Preface: The Velocity of the Modern Builder',
+        author: 'Afsal Ahmed S',
+        pages: 'pp. 01–08',
+      },
+      {
+        type: 'TOOLING BLUEPRINT',
+        title: 'React Ink CLI: Enterprise Terminal User Interfaces with React Components',
+        author: 'Developer Tooling Working Group',
+        pages: 'pp. 09–18',
+      },
+      {
+        type: 'SYSTEMS SPECIFICATION',
+        title: 'Academic OS Wedge: Systems Design for Indian University Operations',
+        author: 'St. Joseph’s Student Architecture Group',
+        pages: 'pp. 19–30',
+      },
+      {
+        type: 'OPTIMIZATION PLAYBOOK',
+        title: 'Zero-to-One Technical Optimization: Bootstrapping Production Codebases',
+        author: 'Technical Review Board',
+        pages: 'pp. 31–42',
+      },
+    ],
+  },
+];
 
 export default function ArchivesPage() {
   return (
-    <div className="min-h-screen grid-bg pt-28 pb-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-
-        {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="badge badge-amethyst">ARTIFACT ARCHIVES</span>
-            <span className="badge badge-slate">SERIAL CATALOG</span>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      
+      {/* ── ARCHIVE MASTHEAD ── */}
+      <div className="border-b-2 border-black pb-6 mb-10">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#EFECE6] px-2 py-0.5 border border-[#DCD6CD]">
+              Serial Issue Repository
+            </span>
+            <span className="text-xs font-mono text-[#525252]">
+              PERMANENT BIBLIOGRAPHIC RECORD
+            </span>
           </div>
-          <h1 className="display-lg text-white mb-4">
-            The Issue{' '}
-            <span style={{ color: '#00F0FF' }}>Catalog</span>
-          </h1>
-          <p className="text-muted max-w-2xl">
-            Every published edition of The Builder Protocol — indexed, cataloged, and open for access.
-            Each issue is a forensic deep-dive into the tools, strategies, and frameworks shaping next-gen builders.
+          <div className="text-xs font-mono text-[#525252]">
+            ISSN Pending • CC BY 4.0 Open Access
+          </div>
+        </div>
+
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-black tracking-tight">
+          Serial Issue Archives
+        </h1>
+        <p className="text-sm sm:text-base text-[#525252] mt-2 max-w-3xl font-sans">
+          The permanent catalog of peer-reviewed digital serial editions published by The Builder Protocol. All issues are fully open-access, citable, and archived for ongoing research and builder reference.
+        </p>
+      </div>
+
+      {/* ── ISSUES LIST ── */}
+      <div className="space-y-12">
+        {SERIAL_ISSUES.map((issue) => (
+          <article 
+            key={issue.pubId}
+            className="border border-[#DCD6CD] bg-white shadow-sm overflow-hidden"
+          >
+            {/* Academic Header Band */}
+            <div className="bg-[#F4F1EA] border-b border-[#DCD6CD] p-4 sm:px-6 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span className="font-bold text-black bg-white px-2 py-0.5 border border-[#DCD6CD]">
+                  {issue.pubId}
+                </span>
+                <span className="text-black font-semibold">
+                  {issue.volume}, {issue.issue}
+                </span>
+                <span className="text-[#DCD6CD]">|</span>
+                <span className="text-[#525252]">
+                  {issue.date}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-black uppercase bg-[#E5E0D8] px-2 py-0.5 border border-[#DCD6CD]">
+                  <CheckCircle2 size={12} />
+                  Open Access Marked
+                </span>
+              </div>
+            </div>
+
+            {/* Main Content Area */}
+            <div className="p-6 sm:p-8">
+              <div className="max-w-4xl">
+                <div className="text-xs font-mono text-[#737373] uppercase tracking-wider mb-2">
+                  {issue.category}
+                </div>
+
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black leading-tight mb-3">
+                  {issue.title}
+                </h2>
+
+                <p className="text-sm sm:text-base text-[#1A1A1A] font-sans leading-relaxed mb-5">
+                  {issue.subtitle}
+                </p>
+
+                <div className="bg-[#FAF9F6] border border-[#DCD6CD] p-4 sm:p-5 mb-6 text-xs sm:text-sm text-[#525252] leading-relaxed font-sans">
+                  <span className="text-black font-bold font-mono uppercase text-xs block mb-1">
+                    EXECUTIVE ABSTRACT:
+                  </span>
+                  {issue.abstract}
+                </div>
+
+                {/* Table of Contents / Articles in Issue */}
+                <div className="mb-6">
+                  <h3 className="font-sans text-xs uppercase tracking-wider font-bold text-black border-b border-[#DCD6CD] pb-2 mb-3">
+                    Monographs & Technical Articles in this Issue
+                  </h3>
+                  <div className="divide-y divide-[#DCD6CD] border border-[#DCD6CD] bg-[#FAF9F6]">
+                    {issue.articles.map((art, aIdx) => (
+                      <div key={aIdx} className="p-3 sm:px-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                        <div>
+                          <span className="font-mono text-[10px] text-[#737373] uppercase tracking-wider block sm:inline sm:mr-3">
+                            [{art.type}]
+                          </span>
+                          <span className="font-semibold text-black hover:underline cursor-pointer">
+                            {art.title}
+                          </span>
+                          <span className="text-[#525252] block sm:inline sm:ml-2">
+                            — {art.author}
+                          </span>
+                        </div>
+                        <span className="font-mono text-[#737373] flex-shrink-0">
+                          {art.pages}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Actions & Attribution */}
+                <div className="pt-4 border-t border-[#DCD6CD] flex flex-wrap items-center justify-between gap-4">
+                  <div className="text-xs font-mono text-[#525252]">
+                    Lead Author: <strong className="text-black">{issue.leadAuthor}</strong>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="mailto:editorial@thebuilderprotocol.me?subject=Citation Request for Issue"
+                      className="px-3 py-1.5 bg-[#F4F1EA] text-black border border-[#DCD6CD] hover:border-black text-xs font-mono transition-all flex items-center gap-1.5"
+                    >
+                      <BookOpen size={13} />
+                      Cite Issue (BibTeX)
+                    </a>
+                    <a
+                      href="mailto:editorial@thebuilderprotocol.me?subject=Full Issue PDF Request"
+                      className="px-4 py-1.5 bg-black text-white hover:bg-[#1A1A1A] text-xs font-mono transition-all flex items-center gap-1.5"
+                    >
+                      <Download size={13} />
+                      Download Monograph PDF
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* ── FORTHCOMING ISSUE SLAT ── */}
+      <div className="mt-12 border-2 border-dashed border-[#DCD6CD] bg-[#F4F1EA] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <span className="text-xs font-mono font-bold text-black uppercase bg-white border border-[#DCD6CD] px-2 py-0.5 inline-block mb-1">
+            FORTHCOMING EDITION • ISSUE 03
+          </span>
+          <h3 className="font-serif text-lg sm:text-xl font-bold text-black">
+            Volume 1, Issue 03 (September/October 2026)
+          </h3>
+          <p className="text-xs sm:text-sm text-[#525252] mt-1 font-sans">
+            Currently undergoing double-blind peer review. Covering autonomous multi-agent pipelines, localized Indian developer infrastructure, and next-gen hardware accelerators.
           </p>
         </div>
-
-        {/* Issue Grid */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          <IssueCard issue={ISSUE_02} featured />
-          <IssueCard issue={ISSUE_01} />
-        </div>
-
-        {/* Coming Soon */}
-        <div className="mt-8 p-6 rounded-xl border border-dashed border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="badge badge-slate">TBP-2026-03</span>
-              <span className="badge badge-slate">SEPTEMBER 2026</span>
-            </div>
-            <p className="text-sm text-muted">Issue 03 is in production. Subscribe to get notified on release.</p>
-          </div>
-          <button className="btn-secondary text-sm whitespace-nowrap">
-            Notify Me on Launch
-            <ArrowUpRight size={14} />
-          </button>
-        </div>
+        <a
+          href="mailto:editorial@thebuilderprotocol.me?subject=Early Access Inquiry - Issue 03"
+          className="flex-shrink-0 px-4 py-2 text-xs font-mono uppercase tracking-wider font-semibold bg-white text-black border border-black hover:bg-black hover:text-white transition-all"
+        >
+          Request Early Notification
+        </a>
       </div>
+
     </div>
   );
 }

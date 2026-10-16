@@ -1,273 +1,378 @@
-import { ArrowRight, BookOpen, Archive, Terminal, Users, Globe, Mail } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, CheckCircle2, ShieldCheck, Mail, Users, ExternalLink, Calendar, BookmarkCheck } from 'lucide-react';
 
 const BOARD_MEMBERS = [
   {
-    role: 'Editor-in-Chief & Publisher',
+    role: 'Publisher & Editor-in-Chief',
     name: 'Afsal Ahmed S',
-    dept: 'Dept. of CSE, SJIT',
-    tag: 'EIC',
-    accent: 'cyan',
+    dept: 'Dept of CSE, St. Joseph’s Institute of Technology',
+    email: 'editorial@thebuilderprotocol.me',
+    institutionalEmail: '24cs@stjosephs.tech.sc.in',
+    badge: 'PUBLISHER / EIC',
+    isPrimary: true,
   },
   {
     role: 'Lead Technical Reviewer',
     name: '[Friend 1 Name]',
-    dept: 'Dept. of CSE, SJIT',
-    tag: 'LTR',
-    accent: 'amethyst',
+    dept: 'Dept of CSE, SJIT',
+    email: '[id1]@stjosephs.tech.sc.in',
+    institutionalEmail: '[id1]@stjosephs.tech.sc.in',
+    badge: 'PEER REVIEW',
+    isPrimary: false,
   },
   {
     role: 'Systems Architecture Editor',
     name: '[Friend 2 Name]',
-    dept: 'Dept. of CSE, SJIT',
-    tag: 'SAE',
-    accent: 'amethyst',
+    dept: 'Dept of CSE, SJIT',
+    email: '[id2]@stjosephs.tech.sc.in',
+    institutionalEmail: '[id2]@stjosephs.tech.sc.in',
+    badge: 'ARCHITECTURE',
+    isPrimary: false,
   },
   {
     role: 'Ecosystem Distribution Lead',
     name: '[Friend 3 Name]',
-    dept: 'Dept. of CSE, SJIT',
-    tag: 'EDL',
-    accent: 'amethyst',
+    dept: 'Dept of CSE, SJIT',
+    email: '[id3]@stjosephs.tech.sc.in',
+    institutionalEmail: '[id3]@stjosephs.tech.sc.in',
+    badge: 'DISTRIBUTION',
+    isPrimary: false,
   },
   {
     role: 'Operations Coordinator',
     name: '[Friend 4 Name]',
-    dept: 'Dept. of CSE, SJIT',
-    tag: 'OC',
-    accent: 'amethyst',
+    dept: 'Dept of CSE, SJIT',
+    email: '[id4]@stjosephs.tech.sc.in',
+    institutionalEmail: '[id4]@stjosephs.tech.sc.in',
+    badge: 'OPERATIONS',
+    isPrimary: false,
   },
 ];
 
-const STATS = [
-  { label: 'ISSUES PUBLISHED', value: '02', mono: true },
-  { label: 'OPEN ACCESS', value: '100%', mono: false },
-  { label: 'PUBLICATION FREQ.', value: 'MONTHLY', mono: true },
-  { label: 'RESEARCH TRACKS', value: '04', mono: true },
+const RESEARCH_TRACKS = [
+  {
+    code: 'TRACK-01',
+    title: 'Advanced AI Engineering Frameworks',
+    scope: 'Production LLM inference optimization, autonomous multi-agent state machines, context retrieval architectures, and real-time inference latency minimization.',
+  },
+  {
+    code: 'TRACK-02',
+    title: 'Computer Vision & Edge Pipelines',
+    scope: 'SOTA edge vision deployment, real-time object detection models, embedded sensor integration, and sparse model parameter quantization.',
+  },
+  {
+    code: 'TRACK-03',
+    title: 'Zero-Budget Startup Execution & Optimization',
+    scope: 'Forensic architecture case studies, infrastructure cost curves, rapid validation loops, and engineering strategies for lean software builders.',
+  },
+  {
+    code: 'TRACK-04',
+    title: 'Open-Source Systems Infrastructure',
+    scope: 'Native compiler runtimes, CLI tooling architecture, decentralized node networks, and developer infrastructure benchmarking.',
+  },
 ];
 
 export default function HomePage({ onNavigate }) {
   return (
-    <div className="min-h-screen grid-bg">
-      {/* ── HERO ── */}
-      <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="hero-gradient-overlay absolute inset-0 pointer-events-none" />
-        <div className="scan-line" />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      
+      {/* ──────────────────────────────────────────────────────────── */}
+      {/* AUDIT COMPLIANCE BANNER — CSIR-NIScPR REVIEW FRAMEWORK      */}
+      {/* ──────────────────────────────────────────────────────────── */}
+      <div className="bg-[#F4F1EA] border border-[#DCD6CD] p-4 sm:p-5 mb-10 rounded-sm">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs font-mono">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 bg-black inline-block rounded-full"></span>
+            <span className="font-bold text-black uppercase tracking-wider">
+              National Science Library (CSIR-NIScPR) Compliance Frame
+            </span>
+            <span className="text-[#DCD6CD] hidden sm:inline">|</span>
+            <span className="text-[#525252]">Digital Serial Audit Protocol</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-4 text-[#525252]">
+            <span>eISSN: <strong className="text-black">Pending</strong></span>
+            <span>Frequency: <strong className="text-black">Monthly</strong></span>
+            <span>Access: <strong className="text-black">Open (CC BY 4.0)</strong></span>
+            <span>Format: <strong className="text-black">Online / Digital</strong></span>
+          </div>
+        </div>
+      </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="max-w-4xl">
-            {/* Pre-label */}
-            <div className="flex items-center gap-3 mb-6 animate-fade-in-up">
-              <span className="badge badge-cyan">VOL. 1 — ISSUE 02 LIVE</span>
-              <span className="badge badge-amethyst">OPEN ACCESS JOURNAL</span>
-            </div>
+      {/* ──────────────────────────────────────────────────────────── */}
+      {/* 1. MANDATORY SECTION: AIMS & SCOPE                          */}
+      {/* ──────────────────────────────────────────────────────────── */}
+      <section className="mb-14 border border-[#DCD6CD] bg-white p-6 sm:p-10 shadow-sm relative">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-black" />
+        <div className="flex items-center justify-between border-b border-[#DCD6CD] pb-3 mb-6">
+          <div className="flex items-center gap-2">
+            <BookOpen size={16} className="text-black" />
+            <h2 className="font-sans text-xs uppercase tracking-widest font-bold text-black">
+              Section 1.0 • Publication Mandate & Scope
+            </h2>
+          </div>
+          <span className="text-xs font-mono text-[#525252]">STATUTORY AUDIT LOG #2026-TBP</span>
+        </div>
 
-            {/* Mission Statement */}
-            <h1 className="display-xl text-white mb-6 animate-fade-in-up-delay-1">
-              The Protocol is Open.{' '}
-              <br className="hidden sm:block" />
-              <span className="text-cyan glow-text-cyan">Build Faster</span>{' '}
-              Than You Think.
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-8">
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-black leading-tight mb-4">
+              Aims & Scope
             </h1>
-
-            <p className="text-lg text-muted leading-relaxed max-w-2xl mb-10 animate-fade-in-up-delay-2">
-              A monthly digital serial publication tracking advanced AI engineering frameworks,
-              computer vision architectures, and zero-budget startup execution strategies
-              for next-generation software builders.
+            <p className="text-sm sm:text-base text-[#1A1A1A] leading-relaxed font-sans mb-6 bg-[#FAF9F6] p-5 border-l-4 border-black border-y border-r border-[#DCD6CD]">
+              "The Builder Protocol is an open-access, peer-reviewed digital serial publication engineered explicitly for next-generation software engineers, student builders, and early-stage technology founders. Our editorial mission focuses on tracking advanced AI engineering frameworks, computer vision architectures, and open-source infrastructure models. The journal mandates a strict focus on rapid, empirical execution rules over abstract theory, providing independent creators with citable software optimization playbooks on a recurring monthly cycle."
             </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4 animate-fade-in-up-delay-3">
-              <button
-                onClick={() => onNavigate('archives')}
-                className="btn-primary"
-                id="cta-explore-issue-02"
-              >
-                Explore Issue 02
-                <ArrowRight size={16} strokeWidth={2.5} />
-              </button>
-              <button
-                onClick={() => onNavigate('archives')}
-                className="btn-secondary"
-                id="cta-access-archives"
-              >
-                <Archive size={15} />
-                Access Archives
-              </button>
+            <div className="flex flex-wrap gap-3 text-xs font-mono">
+              <span className="bg-[#F4F1EA] border border-[#DCD6CD] px-2.5 py-1 text-black">
+                Target Audience: Computer Science Researchers, Builders & Technical Founders
+              </span>
+              <span className="bg-[#F4F1EA] border border-[#DCD6CD] px-2.5 py-1 text-black">
+                Peer Review: Double-Blind Technical Review
+              </span>
             </div>
           </div>
 
-          {/* STATS ROW */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 rounded-xl overflow-hidden border border-white/5 animate-fade-in-up-delay-3">
-            {STATS.map((stat) => (
-              <div key={stat.label} className="bg-obsidian-50 px-6 py-5 hover:bg-obsidian-100 transition-colors">
-                <div className={`text-2xl font-bold mb-1 ${stat.mono ? 'font-mono text-cyan' : 'text-white'}`}
-                  style={stat.mono ? { fontFamily: "'JetBrains Mono', monospace" } : {}}>
-                  {stat.value}
-                </div>
-                <div className="tag-mono text-muted">{stat.label}</div>
+          <div className="lg:col-span-4 bg-[#F4F1EA] p-5 border border-[#DCD6CD] space-y-4">
+            <h3 className="font-sans text-xs uppercase tracking-wider font-bold text-black border-b border-[#DCD6CD] pb-2">
+              Publication Metadata
+            </h3>
+            <div className="text-xs font-mono space-y-2 text-[#525252]">
+              <div className="flex justify-between">
+                <span>Journal Title:</span>
+                <span className="text-black font-semibold text-right">The Builder Protocol</span>
               </div>
-            ))}
+              <div className="flex justify-between">
+                <span>Medium:</span>
+                <span className="text-black font-semibold">Digital / Serial Online</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Publisher:</span>
+                <span className="text-black font-semibold">Afsal Ahmed S</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Country of Origin:</span>
+                <span className="text-black font-semibold">India (Tamil Nadu)</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Language:</span>
+                <span className="text-black font-semibold">English</span>
+              </div>
+              <div className="flex justify-between">
+                <span>First Published:</span>
+                <span className="text-black font-semibold">April 2026</span>
+              </div>
+              <div className="flex justify-between pt-2 border-t border-[#DCD6CD]">
+                <span>Contact Node:</span>
+                <a href="mailto:editorial@thebuilderprotocol.me" className="text-black underline font-semibold">
+                  editorial@thebuilderprotocol.me
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── COMPLIANCE MASTHEAD ── */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="section-header">
-            <span className="label-mono text-cyan">CSIR-NIScPR AUDIT COMPLIANCE</span>
-            <div className="section-header-line" />
-            <span className="label-mono text-muted">BIBLIOGRAPHIC REGISTRY</span>
+      {/* ──────────────────────────────────────────────────────────── */}
+      {/* 2. CORPORATE MASTHEAD & 5-MEMBER STUDENT BOARD             */}
+      {/* ──────────────────────────────────────────────────────────── */}
+      <section className="mb-14">
+        <div className="flex items-center justify-between border-b-2 border-black pb-2 mb-6">
+          <div className="flex items-center gap-2">
+            <Users size={18} className="text-black" />
+            <h2 className="font-serif text-xl sm:text-2xl font-bold text-black">
+              Corporate Masthead & Editorial Board
+            </h2>
           </div>
+          <span className="text-xs font-mono text-[#525252] hidden sm:inline">
+            5-MEMBER STUDENT ADVISORY BOARD
+          </span>
+        </div>
 
-          <div className="masthead-section p-6 md:p-8 mb-4">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Aims & Scope */}
+        <p className="text-xs sm:text-sm text-[#525252] mb-6 font-sans">
+          In compliance with statutory editorial governance criteria, The Builder Protocol is governed by an active editorial and review board consisting of student researchers and systems architects from the Department of Computer Science & Engineering at St. Joseph’s Institute of Technology.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {BOARD_MEMBERS.map((member, idx) => (
+            <div 
+              key={idx} 
+              className={`border border-[#DCD6CD] p-5 bg-[#F4F1EA] relative flex flex-col justify-between ${
+                member.isPrimary ? 'border-black bg-white ring-1 ring-black/10' : ''
+              }`}
+            >
               <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <BookOpen size={14} className="text-cyan" />
-                  <span className="label-mono text-cyan">AIMS & SCOPE</span>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 bg-black text-white uppercase">
+                    {member.badge}
+                  </span>
+                  <span className="text-[11px] font-mono text-[#737373]">
+                    SEAT #{idx + 1}
+                  </span>
                 </div>
-                <p className="text-sm text-white/75 leading-relaxed">
-                  The Builder Protocol is an open-access, monthly digital serial publication tracking
-                  advanced AI engineering frameworks, computer vision architectures, and zero-budget
-                  startup execution strategies for next-generation software builders.
-                </p>
+
+                <div className="mb-3">
+                  <h3 className="font-serif text-lg font-bold text-black">
+                    {member.name}
+                  </h3>
+                  <p className="text-xs font-semibold text-[#1A1A1A] mt-0.5 font-sans">
+                    {member.role}
+                  </p>
+                  <p className="text-xs text-[#525252] mt-1 font-mono">
+                    {member.dept}
+                  </p>
+                </div>
               </div>
 
-              {/* Editorial Management */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Terminal size={14} className="text-cyan" />
-                  <span className="label-mono text-cyan">EDITORIAL MANAGEMENT</span>
+              <div className="pt-3 border-t border-[#DCD6CD] space-y-1 text-xs font-mono">
+                <div className="flex items-center gap-1.5 text-black">
+                  <Mail size={12} className="text-[#525252]" />
+                  <a href={`mailto:${member.email}`} className="hover:underline truncate">
+                    {member.email}
+                  </a>
                 </div>
-                <div className="space-y-2 text-sm text-white/75">
-                  <div className="flex gap-2">
-                    <span className="text-muted flex-shrink-0">Publisher & Editor-in-Chief:</span>
-                    <span className="text-white font-semibold">Afsal Ahmed S</span>
+                {member.isPrimary && (
+                  <div className="text-[11px] text-[#525252]">
+                    Central Contact: <strong className="text-black">editorial@thebuilderprotocol.me</strong>
                   </div>
-                  <div className="flex gap-2 items-start">
-                    <span className="text-muted flex-shrink-0">Institutional Node:</span>
-                    <a href="mailto:24cs@stjosephs.tech.sc.in" className="text-cyan hover:underline font-mono text-xs">
-                      24cs@stjosephs.tech.sc.in
-                    </a>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
+          ))}
 
-            <div className="divider my-6" />
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Publication HQ */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Globe size={14} className="text-cyan" />
-                  <span className="label-mono text-cyan">REGISTERED PUBLICATION HEADQUARTERS</span>
-                </div>
-                <div className="text-sm text-white/75 font-mono leading-relaxed bg-white/3 rounded-lg p-3 border border-white/5">
-                  <p className="text-muted">[Insert Physical Postal Address matching Aadhaar]</p>
-                  <p className="text-muted mt-1">St. Joseph's Institute of Technology</p>
-                  <p className="text-muted">Chennai, Tamil Nadu — India</p>
-                </div>
-              </div>
-
-              {/* Pub Metadata */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Mail size={14} className="text-cyan" />
-                  <span className="label-mono text-cyan">PUBLICATION METADATA</span>
-                </div>
-                <div className="space-y-2">
-                  {[
-                    ['Publication Type', 'Open-Access Digital Serial'],
-                    ['Frequency', 'Monthly'],
-                    ['Language', 'English'],
-                    ['Format', 'Digital (Web)'],
-                    ['ISSN', 'Registration Pending'],
-                  ].map(([key, val]) => (
-                    <div key={key} className="flex justify-between text-xs">
-                      <span className="text-muted">{key}</span>
-                      <span className="text-white/80 font-mono">{val}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+          {/* Institutional Contact Slot */}
+          <div className="border border-dashed border-[#DCD6CD] p-5 bg-[#FAF9F6] flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#E5E0D8] text-black uppercase">
+                INSTITUTIONAL HQ
+              </span>
+              <h3 className="font-serif text-base font-bold text-black mt-3">
+                Department of Computer Science & Engineering
+              </h3>
+              <p className="text-xs text-[#525252] mt-1">
+                St. Joseph’s Institute of Technology, OMR, Chennai, Tamil Nadu — 600119, India.
+              </p>
+            </div>
+            <div className="pt-4 mt-4 border-t border-[#DCD6CD] text-xs font-mono">
+              <span className="text-black font-semibold block">Editorial Correspondence:</span>
+              <a href="mailto:editorial@thebuilderprotocol.me" className="text-black underline block truncate">
+                editorial@thebuilderprotocol.me
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CONTENT REVIEW BOARD ── */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="section-header">
-            <span className="label-mono text-amethyst">ACTIVE 5-MEMBER CONTENT REVIEW BOARD</span>
-            <div className="section-header-line" />
-            <div className="flex items-center gap-2">
-              <Users size={12} className="text-muted" />
-              <span className="label-mono text-muted">STUDENT ADVISORY PANEL</span>
+      {/* ──────────────────────────────────────────────────────────── */}
+      {/* 3. CURRENT ISSUE SPOTLIGHT & ARCHIVES QUICK LINK            */}
+      {/* ──────────────────────────────────────────────────────────── */}
+      <section className="mb-14 border border-[#DCD6CD] bg-[#F4F1EA] p-6 sm:p-8">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-[#DCD6CD]">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-mono text-[#525252] mb-1">
+              <span className="text-black font-bold">LATEST SERIAL RELEASE</span>
+              <span>•</span>
+              <span>VOLUME 1, ISSUE 02 (AUGUST 2026)</span>
+              <span>•</span>
+              <span className="px-1.5 py-0.5 bg-black text-white text-[10px]">OPEN ACCESS</span>
             </div>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black">
+              Forensic Teardown: The Structural Disintegration of Clubhouse Architecture
+            </h2>
+            <p className="text-sm text-[#525252] mt-2 max-w-3xl font-sans">
+              A comprehensive technical post-mortem tracking the socio-technical collapse of a $4B audio platform: audio streaming infra bottlenecks, data layer leaks, and retention curve decay.
+            </p>
           </div>
 
-          <div className="bento-grid">
-            {BOARD_MEMBERS.map((member, i) => (
-              <div
-                key={i}
-                className={`board-card ${i === 0 ? 'border-t-2 border-t-cyan-500/60' : 'border-t-2 border-t-amethyst-500/40'}`}
-                style={i > 0 ? { borderTopColor: 'rgba(157,78,221,0.4)' } : {}}
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <span className={`badge ${i === 0 ? 'badge-cyan' : 'badge-amethyst'}`}>{member.tag}</span>
-                  {i === 0 && <span className="badge badge-green">EIC</span>}
-                </div>
-                <h4 className="font-bold text-white text-sm mb-1">{member.name}</h4>
-                <p className="text-xs text-muted leading-tight mb-2">{member.role}</p>
-                <p className="tag-mono text-muted/70">{member.dept}</p>
-              </div>
-            ))}
+          <div className="flex-shrink-0 flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={() => onNavigate('archives')}
+              className="px-5 py-2.5 bg-black text-white text-xs font-mono uppercase tracking-wider font-semibold hover:bg-[#1A1A1A] transition-all flex items-center justify-center gap-2"
+            >
+              <span>Examine Issue 02</span>
+              <ArrowRight size={14} />
+            </button>
+            <button
+              onClick={() => onNavigate('archives')}
+              className="px-5 py-2.5 bg-white text-black border border-black text-xs font-mono uppercase tracking-wider font-semibold hover:bg-[#FAF9F6] transition-all"
+            >
+              View Repository Catalog
+            </button>
+          </div>
+        </div>
+
+        {/* Catalog Numbers */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 text-xs font-mono">
+          <div>
+            <span className="text-[#737373] block text-[10px] uppercase">Catalog ID</span>
+            <span className="text-black font-bold">PUB ID: TBP•2026•02</span>
+          </div>
+          <div>
+            <span className="text-[#737373] block text-[10px] uppercase">Inaugural Issue</span>
+            <span className="text-black font-bold">PUB ID: TBP•2026•01</span>
+          </div>
+          <div>
+            <span className="text-[#737373] block text-[10px] uppercase">Peer Review Protocol</span>
+            <span className="text-black font-bold">Double-Blind Validated</span>
+          </div>
+          <div>
+            <span className="text-[#737373] block text-[10px] uppercase">Editorial Oversight</span>
+            <span className="text-black font-bold">5-Member Student Board</span>
           </div>
         </div>
       </section>
 
-      {/* ── WHAT WE COVER ── */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-24 border-t border-white/5">
-        <div className="max-w-7xl mx-auto pt-16">
-          <div className="section-header">
-            <span className="label-mono text-cyan">RESEARCH COVERAGE MATRIX</span>
-            <div className="section-header-line" />
-          </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              {
-                icon: '⚡',
-                title: 'AI Engineering Frameworks',
-                desc: 'Deep-dives into production AI stacks, agent architectures, LLM orchestration, and emerging model deployment patterns.',
-                tag: 'AI_TRACK',
-              },
-              {
-                icon: '👁️',
-                title: 'Computer Vision Architectures',
-                desc: 'Dissecting SOTA vision models, real-time inference pipelines, dataset engineering, and edge deployment strategies.',
-                tag: 'CV_TRACK',
-              },
-              {
-                icon: '🚀',
-                title: 'Zero-Budget Startup Strategy',
-                desc: 'Forensic autopsies of startup failures & successes, growth loops, distribution hacks, and builder execution playbooks.',
-                tag: 'STRAT_TRACK',
-              },
-            ].map((item) => (
-              <div key={item.tag} className="card-base p-6 group cursor-default">
-                <div className="text-3xl mb-4">{item.icon}</div>
-                <div className="badge badge-slate mb-3">{item.tag}</div>
-                <h3 className="font-bold text-white text-base mb-2">{item.title}</h3>
-                <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
+      {/* ──────────────────────────────────────────────────────────── */}
+      {/* 4. RESEARCH COVERAGE MATRIX                                 */}
+      {/* ──────────────────────────────────────────────────────────── */}
+      <section className="mb-14">
+        <div className="border-b border-[#DCD6CD] pb-3 mb-6 flex items-center justify-between">
+          <h2 className="font-serif text-xl sm:text-2xl font-bold text-black">
+            Classified Research Coverage Tracks
+          </h2>
+          <span className="text-xs font-mono text-[#525252]">MONTHLY PUBLICATION MATRICES</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {RESEARCH_TRACKS.map((track) => (
+            <div key={track.code} className="border border-[#DCD6CD] bg-white p-6 hover:border-black transition-colors">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-mono font-bold text-black bg-[#EFECE6] px-2 py-0.5 border border-[#DCD6CD]">
+                  {track.code}
+                </span>
+                <span className="text-xs font-mono text-[#737373]">PEER-REVIEWED DOMAIN</span>
               </div>
-            ))}
-          </div>
+              <h3 className="font-serif text-lg font-bold text-black mb-2">
+                {track.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-[#525252] leading-relaxed font-sans">
+                {track.scope}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
+
+      {/* ──────────────────────────────────────────────────────────── */}
+      {/* 5. EDITORIAL SUBMISSION GUIDELINES CALLOUT                  */}
+      {/* ──────────────────────────────────────────────────────────── */}
+      <section className="border-2 border-black bg-white p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div>
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#F4F1EA] px-2 py-0.5 border border-[#DCD6CD] inline-block mb-2">
+            Call for Manuscripts & Empirical Studies
+          </span>
+          <h2 className="font-serif text-xl sm:text-2xl font-bold text-black">
+            Submit Your Technical Research for Issue 03
+          </h2>
+          <p className="text-xs sm:text-sm text-[#525252] mt-1 max-w-2xl font-sans">
+            We welcome technical manuscripts, architecture post-mortems, and open-source system benchmarks from student builders and independent software engineers. Submissions undergo rigorous peer review by our student review board.
+          </p>
+        </div>
+        <button
+          onClick={() => onNavigate('contact')}
+          className="flex-shrink-0 px-6 py-3 bg-black text-white text-xs font-mono uppercase tracking-wider font-semibold hover:bg-[#1A1A1A] transition-all"
+        >
+          Access Submission Gateway
+        </button>
+      </section>
+
     </div>
   );
 }
