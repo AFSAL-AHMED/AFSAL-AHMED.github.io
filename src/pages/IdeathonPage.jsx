@@ -1,11 +1,9 @@
-import { Zap, ArrowUpRight, Clock, Users, Trophy, ExternalLink } from 'lucide-react';
+import { Zap, ArrowUpRight, ExternalLink } from 'lucide-react';
 
 const TRACKS = [
   {
     id: '01',
     title: 'AI Content Masterstroke',
-    icon: '🤖',
-    accent: 'cyan',
     tagline: 'Build the Machine That Writes The Machine',
     desc: 'Design and prototype an AI-powered content engine — a system that researches, structures, and generates publication-grade technical articles with minimal human input. Judges will evaluate originality, pipeline architecture, and content quality output.',
     deliverable: 'Working prototype + Architecture doc',
@@ -15,8 +13,6 @@ const TRACKS = [
   {
     id: '02',
     title: 'LinkedIn Growth Hack',
-    icon: '📈',
-    accent: 'amethyst',
     tagline: 'Engineer Virality. Not Luck.',
     desc: 'Devise and execute a data-driven LinkedIn growth strategy for The Builder Protocol. Submit a full playbook: content calendar, hook formula library, engagement loop design, and a 30-day execution report with real metrics.',
     deliverable: 'Strategy playbook + 30-day report',
@@ -26,210 +22,312 @@ const TRACKS = [
   {
     id: '03',
     title: 'The Ultimate Magazine Feature',
-    icon: '✍️',
-    accent: 'cyan',
     tagline: 'Write Something Worth Remembering',
     desc: 'Submit a full-length, publication-grade editorial feature (2500–4000 words) on any theme within our research scope: AI engineering, startup forensics, or open-source ecosystems. The winning piece gets published in Issue 03 with full attribution.',
-    deliverable: 'Full editorial feature (2500-4000 words)',
+    deliverable: 'Full editorial feature (2500–4000 words)',
     prize: 'Published in Issue 03',
     difficulty: 'OPEN',
   },
 ];
 
 const TIMELINE = [
-  { label: 'Registration Closes', date: 'Nov 1, 2026', status: 'active' },
-  { label: 'Submissions Due', date: 'Nov 20, 2026', status: 'upcoming' },
-  { label: 'Judging Period', date: 'Nov 21–28, 2026', status: 'upcoming' },
-  { label: 'Winners Announced', date: 'Dec 1, 2026', status: 'upcoming' },
+  { label: 'Registration Closes', date: 'Nov 1, 2026',    phase: '01', active: true  },
+  { label: 'Submissions Due',     date: 'Nov 20, 2026',   phase: '02', active: false },
+  { label: 'Judging Period',      date: 'Nov 21–28, 2026',phase: '03', active: false },
+  { label: 'Winners Announced',   date: 'Dec 1, 2026',    phase: '04', active: false },
+];
+
+const PARAMS = [
+  ['Format',    'Online / Async'],
+  ['Tracks',    '3 Open Tracks'],
+  ['Entry Fee', 'Zero-Budget (Free)'],
+  ['Team Size', 'Solo or Duo'],
+  ['Host',      'The Builder Protocol'],
 ];
 
 export default function IdeathonPage() {
   return (
-    <div className="min-h-screen grid-bg pt-28 pb-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div style={{ background: '#F4F4F0', minHeight: '100vh' }}>
 
-        {/* ── HERO ── */}
-        <div className="relative mb-16">
-          <div className="absolute inset-0 -z-10"
-            style={{
-              background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(157,78,221,0.12) 0%, transparent 70%)',
-            }} />
+      {/* ── PAGE HEADER STRIP ── */}
+      <div style={{ borderBottom: '3px solid #000' }}>
+        <div style={{ borderBottom: '2px solid #000', padding: '0.5rem 2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <span className="nb-tag nb-tag-filled">SYSTEMS</span>
+          <span className="nb-tag">STRATEGY INITIATIVE</span>
+          <span className="nb-tag">REGISTRATIONS OPEN</span>
+        </div>
 
-          <div className="flex flex-col lg:flex-row gap-8 items-start">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="badge badge-amethyst">
-                  <Zap size={9} className="mr-1" />
-                  STRATEGY INITIATIVE
-                </span>
-                <span className="badge badge-green">REGISTRATIONS OPEN</span>
-              </div>
-
-              <h1 className="display-lg text-white mb-4">
-                The Next-Gen{' '}
-                <br className="hidden sm:block" />
-                <span style={{ color: '#9D4EDD' }}>Media Blueprint</span>{' '}
-                Ideathon
-              </h1>
-
-              <p className="text-lg text-muted leading-relaxed max-w-2xl mb-8">
-                A builder-first strategy challenge hosted by The Builder Protocol. Three focused tracks.
-                Real deliverables. Your work could ship in Issue 03 or power our distribution layer.
-              </p>
-
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="https://forms.google.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                  id="ideathon-register-btn"
-                  style={{ background: '#9D4EDD', color: '#fff', boxShadow: '0 0 24px rgba(157,78,221,0.4)' }}
-                >
-                  <Zap size={15} strokeWidth={2.5} />
-                  Register Now — Free
-                  <ExternalLink size={13} />
-                </a>
-                <button className="btn-secondary">
-                  Download Brief
-                  <ArrowUpRight size={14} />
-                </button>
-              </div>
-            </div>
-
-            {/* Quick Stats */}
-            <div className="lg:w-64 flex-shrink-0">
-              <div className="card-base p-5 space-y-4">
-                <div className="tag-mono text-amethyst mb-2">EVENT PARAMETERS</div>
-                {[
-                  ['Format', 'Online / Async'],
-                  ['Tracks', '3 Open Tracks'],
-                  ['Entry Fee', 'Zero-Budget (Free)'],
-                  ['Team Size', 'Solo or Duo'],
-                  ['Host', 'The Builder Protocol'],
-                ].map(([k, v]) => (
-                  <div key={k} className="flex justify-between items-center text-sm border-b border-white/5 pb-3">
-                    <span className="text-muted">{k}</span>
-                    <span className="text-white font-medium">{v}</span>
-                  </div>
-                ))}
-              </div>
+        {/* Two-column hero */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 280px' }} className="ideathon-hero-grid">
+          <div style={{ padding: '2.5rem 2rem', borderRight: '2px solid #000' }}>
+            <h1 className="nb-display-xl" style={{ marginBottom: '1rem' }}>
+              The Next-Gen<br />
+              Media Blueprint<br />
+              Ideathon
+            </h1>
+            <p className="nb-body" style={{ maxWidth: 520, marginBottom: '2rem' }}>
+              A builder-first strategy challenge hosted by The Builder Protocol.
+              Three focused tracks. Real deliverables. Your work could ship in Issue 03
+              or power our distribution layer.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <a
+                href="https://forms.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nb-btn nb-btn-filled"
+                id="ideathon-register-btn"
+              >
+                <Zap size={14} />
+                REGISTER NOW — FREE
+                <ExternalLink size={12} />
+              </a>
+              <button className="nb-btn">
+                DOWNLOAD BRIEF <ArrowUpRight size={14} />
+              </button>
             </div>
           </div>
-        </div>
 
-        {/* ── TRACKS ── */}
-        <div className="section-header">
-          <span className="label-mono text-amethyst">CHALLENGE TRACKS</span>
-          <div className="section-header-line" />
-          <span className="label-mono text-muted">3 OPEN TRACKS</span>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-5 mb-16">
-          {TRACKS.map((track) => {
-            const isCyan = track.accent === 'cyan';
-            return (
+          {/* Event params */}
+          <div style={{ padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '0' }}>
+            <div className="nb-label" style={{ marginBottom: '1rem', color: 'rgba(0,0,0,0.5)' }}>
+              EVENT PARAMETERS
+            </div>
+            {PARAMS.map(([k, v], i) => (
               <div
-                key={track.id}
-                className="card-base p-6 flex flex-col"
+                key={k}
                 style={{
-                  borderTop: `2px solid ${isCyan ? 'rgba(0,240,255,0.4)' : 'rgba(157,78,221,0.4)'}`,
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '0.75rem 0',
+                  borderBottom: i < PARAMS.length - 1 ? '1px solid rgba(0,0,0,0.15)' : 'none',
                 }}
               >
-                {/* Track ID + Icon */}
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-3xl">{track.icon}</span>
-                  <div className="flex gap-2">
-                    <span className={`badge ${isCyan ? 'badge-cyan' : 'badge-amethyst'}`}>
-                      TRACK_{track.id}
-                    </span>
-                    <span className="badge badge-slate">{track.difficulty}</span>
-                  </div>
-                </div>
+                <span className="nb-label" style={{ color: 'rgba(0,0,0,0.5)', fontSize: '0.5625rem' }}>{k}</span>
+                <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.8125rem' }}>{v}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-                <h3 className="font-bold text-white text-lg mb-1">{track.title}</h3>
-                <p className={`text-xs font-mono mb-4 ${isCyan ? 'text-cyan' : 'text-amethyst'}`}
-                  style={{ color: isCyan ? 'var(--cyan-neon)' : 'var(--amethyst)', fontFamily: "'JetBrains Mono', monospace" }}>
-                  // {track.tagline}
-                </p>
+      {/* ── CHALLENGE TRACKS ── */}
+      <section style={{ borderBottom: '3px solid #000', padding: '2.5rem 2rem' }}>
+        <div className="nb-section-header">
+          <span className="nb-label">CHALLENGE TRACKS</span>
+          <div className="nb-section-header-line" />
+          <span className="nb-label" style={{ color: 'rgba(0,0,0,0.4)', whiteSpace: 'nowrap' }}>3 OPEN TRACKS</span>
+        </div>
 
-                <p className="text-sm text-muted leading-relaxed mb-5 flex-1">{track.desc}</p>
-
-                <div className="space-y-2 pt-4 border-t border-white/5">
-                  <div className="flex items-start gap-2 text-xs">
-                    <span className="text-muted">Deliverable:</span>
-                    <span className="text-white/80">{track.deliverable}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs">
-                    <Trophy size={11} className="text-yellow-400" />
-                    <span className="text-muted">Prize:</span>
-                    <span className="text-yellow-400 font-medium">{track.prize}</span>
-                  </div>
+        {/* 3-col grid with thick outer border */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            border: '3px solid #000',
+          }}
+          className="tracks-grid"
+        >
+          {TRACKS.map((track, i) => (
+            <div
+              key={track.id}
+              style={{
+                padding: '1.75rem',
+                borderRight: i < 2 ? '2px solid #000' : 'none',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              {/* Track header */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                <span
+                  className="nb-label"
+                  style={{
+                    fontSize: '1.5rem',
+                    fontWeight: 900,
+                    letterSpacing: '-0.03em',
+                    lineHeight: 1,
+                    fontFamily: "'Inter', sans-serif",
+                  }}
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div style={{ display: 'flex', gap: '0.4rem', flexDirection: 'column', alignItems: 'flex-end' }}>
+                  <span className="nb-tag nb-tag-filled" style={{ fontSize: '0.5rem' }}>TRACK_{track.id}</span>
+                  <span className="nb-tag" style={{ fontSize: '0.5rem' }}>{track.difficulty}</span>
                 </div>
               </div>
-            );
-          })}
+
+              <div
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 800,
+                  fontSize: '1.0625rem',
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.2,
+                  marginBottom: '0.4rem',
+                }}
+              >
+                {track.title}
+              </div>
+
+              <div
+                className="nb-label"
+                style={{ color: 'rgba(0,0,0,0.5)', fontSize: '0.5625rem', marginBottom: '0.875rem' }}
+              >
+                // {track.tagline}
+              </div>
+
+              <p className="nb-body-sm" style={{ flex: 1, marginBottom: '1.25rem' }}>{track.desc}</p>
+
+              <div style={{ borderTop: '1px solid rgba(0,0,0,0.2)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.75rem' }}>
+                  <span style={{ color: 'rgba(0,0,0,0.5)', fontFamily: "'Space Grotesk', sans-serif" }}>Deliverable:</span>
+                  <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}>{track.deliverable}</span>
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.75rem', alignItems: 'center' }}>
+                  <span style={{ color: 'rgba(0,0,0,0.5)', fontFamily: "'Space Grotesk', sans-serif" }}>Prize:</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}>{track.prize}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── TIMELINE ── */}
+      <section style={{ borderBottom: '3px solid #000', padding: '2.5rem 2rem' }}>
+        <div className="nb-section-header">
+          <span className="nb-label">EVENT TIMELINE</span>
+          <div className="nb-section-header-line" />
         </div>
 
-        {/* ── TIMELINE ── */}
-        <div className="section-header">
-          <span className="label-mono text-cyan">EVENT TIMELINE</span>
-          <div className="section-header-line" />
-        </div>
-
-        <div className="grid sm:grid-cols-4 gap-4 mb-16">
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            border: '2px solid #000',
+          }}
+          className="timeline-grid"
+        >
           {TIMELINE.map((item, i) => (
-            <div key={i} className="relative">
-              <div className={`card-base p-4 ${item.status === 'active' ? 'border-cyan-500/30' : ''}`}
-                style={item.status === 'active' ? { borderColor: 'rgba(0,240,255,0.3)', background: 'rgba(0,240,255,0.03)' } : {}}>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="w-2 h-2 rounded-full flex-shrink-0"
-                    style={{ background: item.status === 'active' ? '#00F0FF' : 'rgba(255,255,255,0.2)' }} />
-                  <span className={`tag-mono ${item.status === 'active' ? 'text-cyan' : 'text-muted'}`}
-                    style={item.status === 'active' ? { color: 'var(--cyan-neon)' } : {}}>
-                    PHASE {String(i + 1).padStart(2, '0')}
+            <div
+              key={i}
+              style={{
+                padding: '1.25rem',
+                borderRight: i < 3 ? '2px solid #000' : 'none',
+                background: item.active ? '#000' : '#F4F4F0',
+                color: item.active ? '#F4F4F0' : '#000',
+              }}
+            >
+              <div
+                className="nb-label"
+                style={{
+                  fontSize: '0.5rem',
+                  color: item.active ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.4)',
+                  marginBottom: '0.6rem',
+                }}
+              >
+                PHASE {item.phase}
+              </div>
+              <div
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 800,
+                  fontSize: '0.875rem',
+                  marginBottom: '0.3rem',
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                {item.date}
+              </div>
+              <div
+                style={{
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontSize: '0.8125rem',
+                  color: item.active ? 'rgba(255,255,255,0.75)' : 'rgba(0,0,0,0.6)',
+                }}
+              >
+                {item.label}
+              </div>
+              {item.active && (
+                <div style={{ marginTop: '0.75rem' }}>
+                  <span
+                    className="nb-tag"
+                    style={{ borderColor: 'rgba(255,255,255,0.4)', color: 'rgba(255,255,255,0.8)', fontSize: '0.5rem' }}
+                  >
+                    NOW OPEN
                   </span>
                 </div>
-                <div className="font-mono text-xs text-white/80 mb-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{item.date}</div>
-                <div className="text-sm text-muted">{item.label}</div>
-              </div>
-              {i < TIMELINE.length - 1 && (
-                <div className="hidden sm:block absolute top-1/2 -right-2 w-4 h-px bg-white/10" />
               )}
             </div>
           ))}
         </div>
+      </section>
 
-        {/* ── REGISTRATION CTA ── */}
-        <div className="masthead-section p-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Users size={16} className="text-amethyst" style={{ color: 'var(--amethyst)' }} />
-            <span className="label-mono text-amethyst" style={{ color: 'var(--amethyst)' }}>
-              REGISTRATION IS FREE & OPEN TO ALL
-            </span>
+      {/* ── REGISTRATION CTA ── */}
+      <section
+        style={{
+          margin: '2.5rem 2rem',
+          border: '3px solid #000',
+          padding: '3rem 2.5rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '2rem',
+          background: '#000',
+          color: '#F4F4F0',
+        }}
+      >
+        <div>
+          <div className="nb-label" style={{ color: 'rgba(255,255,255,0.5)', marginBottom: '0.6rem' }}>
+            REGISTRATION IS FREE & OPEN TO ALL
           </div>
-          <h3 className="display-md text-white mb-3">
-            Ready to Build Something{' '}
-            <span style={{ color: '#9D4EDD' }}>Worth Publishing?</span>
+          <h3 className="nb-display-lg" style={{ color: '#F4F4F0', marginBottom: '0.6rem' }}>
+            Ready to Build<br />Something Worth<br />Publishing?
           </h3>
-          <p className="text-muted mb-8 max-w-xl mx-auto">
-            Click below to access the Google Form registration. Takes 2 minutes.
-            No prerequisites — just a builder's mindset.
+          <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.9rem', color: 'rgba(255,255,255,0.65)', maxWidth: 380 }}>
+            Click below to access the Google Form registration.
+            Takes 2 minutes. No prerequisites — just a builder's mindset.
           </p>
-          <a
-            href="https://forms.google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            id="ideathon-register-form-link"
-            className="btn-primary inline-flex"
-            style={{ background: '#9D4EDD', color: '#fff', boxShadow: '0 0 30px rgba(157,78,221,0.4)', padding: '1rem 2.5rem', fontSize: '0.9375rem' }}
-          >
-            <Zap size={17} strokeWidth={2.5} />
-            Open Registration Form
-            <ExternalLink size={15} />
-          </a>
         </div>
-      </div>
+        <a
+          href="https://forms.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="ideathon-register-form-link"
+          className="nb-btn"
+          style={{
+            background: '#F4F4F0',
+            color: '#000',
+            borderColor: '#F4F4F0',
+            padding: '1rem 2rem',
+            fontSize: '0.75rem',
+            flexShrink: 0,
+            boxShadow: '4px 4px 0 0 rgba(255,255,255,0.3)',
+          }}
+        >
+          <Zap size={15} />
+          OPEN REGISTRATION FORM
+          <ExternalLink size={13} />
+        </a>
+      </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .ideathon-hero-grid { grid-template-columns: 1fr !important; }
+          .ideathon-hero-grid > div:first-child { border-right: none !important; border-bottom: 2px solid #000; }
+          .tracks-grid { grid-template-columns: 1fr !important; }
+          .tracks-grid > div { border-right: none !important; border-bottom: 2px solid #000; }
+          .tracks-grid > div:last-child { border-bottom: none !important; }
+          .timeline-grid { grid-template-columns: 1fr 1fr !important; }
+          .timeline-grid > div:nth-child(2) { border-right: none !important; }
+          .timeline-grid > div:nth-child(3) { border-top: 2px solid #000; border-right: 2px solid #000; }
+          .timeline-grid > div:nth-child(4) { border-top: 2px solid #000; border-right: none !important; }
+        }
+      `}</style>
     </div>
   );
 }

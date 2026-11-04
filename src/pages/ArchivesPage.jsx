@@ -1,4 +1,4 @@
-import { ExternalLink, ArrowUpRight, ChevronRight, Lock, Globe } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, ChevronRight } from 'lucide-react';
 
 const ISSUE_02 = {
   pubId: 'TBP-2026-02',
@@ -6,35 +6,28 @@ const ISSUE_02 = {
   issue: 'Issue 02',
   date: 'August 2026',
   theme: 'Built. Broken. Learned.',
-  subtitle: 'Forensic Autopsy of Clubhouse\'s $4B Collapse',
+  subtitle: "Forensic Autopsy of Clubhouse's $4B Collapse",
   category: 'Case Study',
-  format: 'Open Access',
-  accent: 'cyan',
-  coverColor: 'from-cyan-950/40 to-obsidian-300',
   sections: [
     {
       tag: 'COVER STORY',
-      title: 'Clubhouse\'s $4B Collapse',
+      title: "Clubhouse's $4B Collapse",
       desc: 'A forensic post-mortem dissecting the viral rise and catastrophic fall of the audio-social giant — from peak valuation to near-irrelevance in 18 months.',
-      link: '#',
     },
     {
       tag: 'OPEN SOURCE CORNER',
       title: 'Lightpanda Zig Browser',
       desc: 'Exploring the blazing-fast, Zig-native browser engine redefining headless automation benchmarks for AI scraping pipelines.',
-      link: '#',
     },
     {
       tag: 'AGENT PICK',
       title: 'Manus AI — Dissected',
       desc: 'A technical breakdown of Manus, the autonomous multi-agent system, including its architecture, capabilities, and real-world deployment edge cases.',
-      link: '#',
     },
     {
       tag: 'GROWTH STRATEGY',
       title: 'Generative Engine Optimization (GEO)',
       desc: 'The new SEO. How builders must rethink content distribution for LLM-era search engines — AIO, perplexity ranking, and structured knowledge injection.',
-      link: '#',
     },
   ],
 };
@@ -47,120 +40,180 @@ const ISSUE_01 = {
   theme: 'The Founder File Preface',
   subtitle: 'Inaugural Edition — The Zero-to-One Builder Thesis',
   category: 'Developer Tooling',
-  format: 'Open Access',
-  accent: 'amethyst',
-  coverColor: 'from-purple-950/40 to-obsidian-300',
   sections: [
     {
       tag: 'EDITORIAL',
       title: 'The Founder File Preface',
       desc: 'The inaugural manifesto defining the Builder Protocol thesis: why the next billion-dollar companies will be built by technical founders who move first.',
-      link: '#',
     },
     {
       tag: 'OPEN SOURCE CORNER',
       title: 'React Ink CLI',
       desc: 'Building terminal UIs with React. A hands-on guide to React Ink for building rich, interactive CLI developer tools in the Node.js ecosystem.',
-      link: '#',
     },
     {
       tag: 'WEEKEND SPEC',
       title: 'Academic OS Wedge',
       desc: 'A systems design spec for building an open-source academic operations platform targeting Indian universities — the architecture, data model, and GTM.',
-      link: '#',
     },
     {
       tag: 'STRATEGY',
       title: 'Zero-to-One Playbook',
       desc: 'A distilled, technical framework for validating, building, and distributing a startup in the zero-budget constraint environment.',
-      link: '#',
     },
   ],
 };
 
 function IssueCard({ issue, featured = false }) {
-  const isCyan = issue.accent === 'cyan';
-
   return (
-    <div className={`card-base overflow-hidden ${featured ? 'border-2' : 'border'}`}
-      style={featured ? {
-        borderColor: isCyan ? 'rgba(0,240,255,0.2)' : 'rgba(157,78,221,0.2)',
-        boxShadow: isCyan
-          ? '0 0 40px rgba(0,240,255,0.06), 0 8px 40px rgba(0,0,0,0.5)'
-          : '0 0 40px rgba(157,78,221,0.06), 0 8px 40px rgba(0,0,0,0.5)',
-      } : {}}>
-
-      {/* Issue Header */}
-      <div className={`relative px-6 pt-6 pb-8 bg-gradient-to-br ${issue.coverColor}`}>
+    <div
+      className={`nb-block${featured ? '-thick' : ''}`}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        background: '#F4F4F0',
+        ...(featured ? { borderWidth: '3px' } : {}),
+      }}
+    >
+      {/* Issue header */}
+      <div
+        style={{
+          background: featured ? '#000' : '#F4F4F0',
+          color: featured ? '#F4F4F0' : '#000',
+          padding: '1.75rem 1.75rem 1.5rem',
+          borderBottom: '2px solid #000',
+          position: 'relative',
+        }}
+      >
         {featured && (
-          <div className="absolute top-4 right-4">
-            <span className="badge badge-cyan">LATEST ISSUE</span>
+          <div style={{ position: 'absolute', top: '1rem', right: '1rem' }}>
+            <span
+              className="nb-tag"
+              style={{ borderColor: '#F4F4F0', color: '#F4F4F0' }}
+            >
+              LATEST ISSUE
+            </span>
           </div>
         )}
 
-        <div className="flex items-center gap-2 mb-3">
-          <span className={`badge ${isCyan ? 'badge-cyan' : 'badge-amethyst'}`}>{issue.pubId}</span>
-          <span className="badge badge-slate">{issue.category}</span>
-          <span className="badge badge-green">
-            <Globe size={8} className="mr-1" />
-            {issue.format}
+        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
+          <span
+            className="nb-tag"
+            style={featured
+              ? { borderColor: '#F4F4F0', color: '#F4F4F0' }
+              : { borderColor: '#000', color: '#000' }
+            }
+          >
+            {issue.pubId}
+          </span>
+          <span
+            className="nb-tag"
+            style={featured
+              ? { borderColor: 'rgba(255,255,255,0.4)', color: 'rgba(255,255,255,0.7)' }
+              : { borderColor: 'rgba(0,0,0,0.4)', color: 'rgba(0,0,0,0.6)' }
+            }
+          >
+            {issue.category}
+          </span>
+          <span
+            className="nb-tag"
+            style={featured
+              ? { borderColor: 'rgba(255,255,255,0.4)', color: 'rgba(255,255,255,0.7)' }
+              : { borderColor: 'rgba(0,0,0,0.4)', color: 'rgba(0,0,0,0.6)' }
+            }
+          >
+            OPEN ACCESS
           </span>
         </div>
 
-        <div className="font-mono text-xs text-muted mb-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+        <div
+          className="nb-label"
+          style={{
+            color: featured ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.5)',
+            marginBottom: '0.5rem',
+          }}
+        >
           {issue.vol} — {issue.issue} // {issue.date}
         </div>
 
-        <h2 className={`display-md mb-1 ${isCyan ? 'text-cyan' : 'text-amethyst'}`}
-          style={isCyan ? { color: '#00F0FF' } : { color: '#9D4EDD' }}>
-          {issue.theme}
-        </h2>
-        <p className="text-sm text-white/60">{issue.subtitle}</p>
-
-        {/* Decorative Grid Accent */}
-        <div className="absolute bottom-0 right-0 w-32 h-32 opacity-10"
+        <div
           style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)',
-            backgroundSize: '16px 16px',
-          }} />
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 900,
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+            letterSpacing: '-0.03em',
+            lineHeight: 1.05,
+            textTransform: 'uppercase',
+            marginBottom: '0.4rem',
+          }}
+        >
+          {issue.theme}
+        </div>
+        <p
+          style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontSize: '0.8125rem',
+            color: featured ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,0.6)',
+          }}
+        >
+          {issue.subtitle}
+        </p>
       </div>
 
-      {/* Sections */}
-      <div className="p-6 space-y-3">
-        <div className="label-mono text-muted mb-4">EDITORIAL SEGMENTS</div>
-        {issue.sections.map((section) => (
-          <a
-            key={section.tag}
-            href={section.link}
-            className="flex items-start gap-3 p-3.5 rounded-lg border border-white/5 hover:border-white/10 hover:bg-white/3 transition-all group cursor-pointer"
-          >
-            <ChevronRight size={14} className={`mt-0.5 flex-shrink-0 transition-transform group-hover:translate-x-0.5 ${isCyan ? 'text-cyan' : 'text-amethyst'}`}
-              style={isCyan ? { color: 'var(--cyan-neon)' } : { color: 'var(--amethyst)' }} />
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-0.5">
-                <span className={`tag-mono ${isCyan ? 'text-cyan' : 'text-amethyst'}`}
-                  style={isCyan ? { color: 'var(--cyan-neon)' } : { color: 'var(--amethyst)' }}>
+      {/* Sections list */}
+      <div style={{ padding: '1.25rem 1.75rem', flex: 1 }}>
+        <div className="nb-label" style={{ color: 'rgba(0,0,0,0.5)', marginBottom: '0.875rem' }}>
+          EDITORIAL SEGMENTS
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+          {issue.sections.map((section, i) => (
+            <a
+              key={section.tag}
+              href="#"
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '0.75rem',
+                padding: '0.875rem 0',
+                borderBottom: i < issue.sections.length - 1 ? '1px solid rgba(0,0,0,0.15)' : 'none',
+                textDecoration: 'none',
+                color: '#000',
+                cursor: 'pointer',
+              }}
+              className="archive-row"
+            >
+              <ChevronRight size={14} style={{ marginTop: '2px', flexShrink: 0 }} />
+              <div style={{ flex: 1 }}>
+                <div className="nb-label" style={{ fontSize: '0.5rem', color: 'rgba(0,0,0,0.5)', marginBottom: '0.2rem' }}>
                   {section.tag}
-                </span>
+                </div>
+                <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: '0.875rem', marginBottom: '0.2rem' }}>
+                  {section.title}
+                </div>
+                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.75rem', color: 'rgba(0,0,0,0.6)', lineHeight: 1.5 }}>
+                  {section.desc}
+                </div>
               </div>
-              <div className="font-semibold text-sm text-white/90 mb-1">{section.title}</div>
-              <div className="text-xs text-muted leading-relaxed">{section.desc}</div>
-            </div>
-            <ArrowUpRight size={13} className="flex-shrink-0 text-muted group-hover:text-white transition-colors mt-0.5" />
-          </a>
-        ))}
+              <ArrowUpRight size={13} style={{ flexShrink: 0, marginTop: '2px', opacity: 0.4 }} />
+            </a>
+          ))}
+        </div>
       </div>
 
-      {/* Footer */}
-      <div className="px-6 pb-6 flex items-center gap-3">
-        <button className={`btn-primary flex-1 justify-center text-sm py-3 ${!isCyan ? 'bg-amethyst text-white' : ''}`}
-          style={!isCyan ? { background: 'var(--amethyst)', color: 'white', boxShadow: '0 0 20px rgba(157,78,221,0.3)' } : {}}>
-          Read Full Issue
-          <ExternalLink size={14} />
+      {/* Footer actions */}
+      <div
+        style={{
+          padding: '1.25rem 1.75rem',
+          borderTop: '2px solid #000',
+          display: 'flex',
+          gap: '0.75rem',
+        }}
+      >
+        <button className="nb-btn nb-btn-filled" style={{ flex: 1, justifyContent: 'center' }}>
+          READ FULL ISSUE <ExternalLink size={13} />
         </button>
-        <button className="btn-secondary py-3 px-4 text-sm">
-          <Lock size={13} />
-          Download PDF
+        <button className="nb-btn" style={{ padding: '0.75rem 1rem' }}>
+          PDF
         </button>
       </div>
     </div>
@@ -169,46 +222,71 @@ function IssueCard({ issue, featured = false }) {
 
 export default function ArchivesPage() {
   return (
-    <div className="min-h-screen grid-bg pt-28 pb-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div style={{ background: '#F4F4F0', minHeight: '100vh' }}>
 
-        {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="badge badge-amethyst">ARTIFACT ARCHIVES</span>
-            <span className="badge badge-slate">SERIAL CATALOG</span>
-          </div>
-          <h1 className="display-lg text-white mb-4">
-            The Issue{' '}
-            <span style={{ color: '#00F0FF' }}>Catalog</span>
+      {/* Page header strip */}
+      <div style={{ borderBottom: '3px solid #000', padding: '0' }}>
+        <div style={{ borderBottom: '2px solid #000', padding: '0.5rem 2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <span className="nb-tag nb-tag-filled">PLAYBOOKS</span>
+          <span className="nb-tag">SERIAL CATALOG</span>
+        </div>
+        <div style={{ padding: '2.5rem 2rem 2rem' }}>
+          <h1 className="nb-display-xl" style={{ marginBottom: '0.75rem' }}>
+            The Issue<br />Catalog
           </h1>
-          <p className="text-muted max-w-2xl">
+          <p className="nb-body" style={{ maxWidth: 560 }}>
             Every published edition of The Builder Protocol — indexed, cataloged, and open for access.
             Each issue is a forensic deep-dive into the tools, strategies, and frameworks shaping next-gen builders.
           </p>
         </div>
-
-        {/* Issue Grid */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          <IssueCard issue={ISSUE_02} featured />
-          <IssueCard issue={ISSUE_01} />
-        </div>
-
-        {/* Coming Soon */}
-        <div className="mt-8 p-6 rounded-xl border border-dashed border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="badge badge-slate">TBP-2026-03</span>
-              <span className="badge badge-slate">SEPTEMBER 2026</span>
-            </div>
-            <p className="text-sm text-muted">Issue 03 is in production. Subscribe to get notified on release.</p>
-          </div>
-          <button className="btn-secondary text-sm whitespace-nowrap">
-            Notify Me on Launch
-            <ArrowUpRight size={14} />
-          </button>
-        </div>
       </div>
+
+      {/* Issue grid — asymmetric: featured wider */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '3fr 2fr',
+          borderBottom: '3px solid #000',
+          padding: '2rem',
+          gap: '1.5rem',
+        }}
+        className="archives-grid"
+      >
+        <IssueCard issue={ISSUE_02} featured />
+        <IssueCard issue={ISSUE_01} />
+      </div>
+
+      {/* Coming Soon banner */}
+      <div
+        style={{
+          margin: '2rem',
+          border: '2px dashed #000',
+          padding: '1.5rem 2rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1rem',
+        }}
+      >
+        <div>
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+            <span className="nb-tag">TBP-2026-03</span>
+            <span className="nb-tag">SEPTEMBER 2026</span>
+          </div>
+          <p className="nb-body-sm">Issue 03 is in production. Subscribe to get notified on release.</p>
+        </div>
+        <button className="nb-btn">
+          NOTIFY ME ON LAUNCH <ArrowUpRight size={14} />
+        </button>
+      </div>
+
+      <style>{`
+        .archive-row:hover { background: rgba(0,0,0,0.04); }
+        @media (max-width: 800px) {
+          .archives-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }

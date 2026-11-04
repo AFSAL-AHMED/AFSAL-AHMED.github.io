@@ -16,15 +16,12 @@ const VIEWS = {
 export default function App() {
   const [activeView, setActiveView] = useState('home');
 
-  // Sync view with URL hash (client-side routing)
   useEffect(() => {
     const getViewFromHash = () => {
       const hash = window.location.hash.replace('#', '');
       return VIEWS[hash] ? hash : 'home';
     };
-
     setActiveView(getViewFromHash());
-
     const onHashChange = () => setActiveView(getViewFromHash());
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
@@ -38,13 +35,11 @@ export default function App() {
   const ActivePage = VIEWS[activeView] || HomePage;
 
   return (
-    <div className="min-h-screen bg-obsidian flex flex-col" style={{ background: '#05070B' }}>
+    <div className="min-h-screen flex flex-col" style={{ background: '#F4F4F0' }}>
       <Navbar activeView={activeView} onNavigate={navigate} />
-
-      <main className="flex-1">
+      <main className="flex-1" style={{ paddingTop: '100px' }}>
         <ActivePage onNavigate={navigate} />
       </main>
-
       <Footer onNavigate={navigate} />
     </div>
   );
