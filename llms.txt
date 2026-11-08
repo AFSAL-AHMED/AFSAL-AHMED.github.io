@@ -1,0 +1,29 @@
+# The Builder Protocol
+
+> An open-access, monthly digital serial publication tracking advanced AI engineering frameworks, computer vision architectures, and zero-budget startup execution strategies for next-generation software builders.
+
+## About
+
+- Publisher: Afsal Ahmed S (Editor-in-Chief)
+- Institution: Dept. of CSE, St. Joseph's Institute of Technology, Chennai, India
+- Format: Open-Access Digital Serial
+- Frequency: Monthly
+- Language: English
+- URL: https://thebuilderprotocol.me/
+
+## Research Tracks
+
+- **AI Engineering Frameworks**: Deep-dives into production AI stacks, agent architectures, LLM orchestration, and emerging model deployment patterns.
+- **Computer Vision Architectures**: Dissecting SOTA vision models, real-time inference pipelines, dataset engineering, and edge deployment strategies.
+- **Zero-Budget Startup Strategy**: Forensic autopsies of startup failures & successes, growth loops, distribution hacks, and builder execution playbooks.
+
+## Content
+
+- Home: https://thebuilderprotocol.me/
+- Archives / Dispatch Vault: https://thebuilderprotocol.me/#archives
+- Ideathon 2026: https://thebuilderprotocol.me/#ideathon
+- Contact & Submissions: https://thebuilderprotocol.me/#contact
+
+## Contact
+
+- Editorial: 24cs@stjosephs.tech.sc.in
