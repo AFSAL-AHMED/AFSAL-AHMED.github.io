@@ -15,20 +15,20 @@ const VIEWS = {
 
 const PAGE_META = {
   home: {
-    title: 'THE BUILDER PROTOCOL — Advanced AI Engineering & Startup Research Journal',
-    description: 'An open-access, monthly digital serial publication tracking advanced AI engineering frameworks, computer vision architectures, and zero-budget startup execution strategies for next-generation software builders.',
+    title: 'The Builder Protocol — AI Engineering & Startup Journal',
+    description: 'Monthly open-access journal on AI engineering, computer vision, and zero-budget startup strategy for next-gen software builders.',
   },
   archives: {
-    title: 'Archives & Dispatch Vault | THE BUILDER PROTOCOL',
-    description: 'Explore the complete archive of technical field dispatches, startup architecture deep-dives, and AI engineering research papers.',
+    title: 'Archives & Dispatch Vault | The Builder Protocol',
+    description: 'Browse all issues: AI stacks, computer vision deep-dives, and startup autopsy reports from The Builder Protocol.',
   },
   ideathon: {
-    title: 'Ideathon 2026 | THE BUILDER PROTOCOL',
-    description: 'Join the annual Builder Protocol Ideathon. Propose, build, and deploy production-grade software and AI applications.',
+    title: 'Ideathon 2026 | The Builder Protocol',
+    description: 'Join the Builder Protocol Ideathon. Propose, build, and ship production-grade AI and software projects.',
   },
   contact: {
-    title: 'Contact & Submissions | THE BUILDER PROTOCOL',
-    description: 'Get in touch with editorial, submit research manuscripts, or report corrections to The Builder Protocol team.',
+    title: 'Contact & Submissions | The Builder Protocol',
+    description: 'Submit research manuscripts, pitch ideas, or reach the editorial team at The Builder Protocol.',
   },
 };
 
